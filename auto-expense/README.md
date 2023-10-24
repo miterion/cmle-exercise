@@ -91,6 +91,8 @@ This stack is intended as a proof of concept and should not be deployed in produ
 1. There is no security implemented on the Lambda endpoint. A proper deployment should be using token-based/oauth authentication. Alternatively, activating AWS IAM authentication can also keep the function from being abused by malicious parties.
 2. The Lambda function acts as a rate-limiter, with the default concurrency setting of 10 maxing out at 100 requests per second. This might need to be increased for a production setting.
 3. The app only allows submitting images by making them publicly available and providing a link to the model. This link is also currently not sanitized and should be preprocessed before being send to the model.
+4. The instance used might not be optimal depending on the use-case. Using an inf1/2 instance or running AWS inference instance recommendations might help increasing throughput.
+5. The model is currently only called with a single query. Depending on the inference instance, batching multiple queries together might be more efficient.
 
 # ToDos
 I added a small test website that can be deployed with the stack to allow testing the endpoint.
