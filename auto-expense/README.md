@@ -76,6 +76,15 @@ The model is hosted on Sagemaker using an inference endpoint. By default it is c
 If the threshold of five requests per second (per instance) is crossed for over 300 seconds, another model instance is spun up to accommodate the load.
 If traffic subsides, additional instances will be scaled out after a cool down period of 300 seconds.
 
+## Model Container
+By default, the container provided by AWS/HuggingFace doesn't contain the necessary OCR software to run inference.
+We therefore need to add these dependencies to the container during deployment.
+See the `docker` folder for more details.
+
+## Lambda Function
+To simplify usage and act as a layer between the model endpoint and the end-user, a Lambda function is provided in the `lambda` folder.
+It acts as a rate-limiter and provides an easy way to invoke the model using a set of pre-defined questions.
+
 # Necessary production changes
 This stack is intended as a proof of concept and should not be deployed in production for a number of reasons:
 
