@@ -1,0 +1,2 @@
+-r requirements.txt
+-r lambda/endpoint/requirements.txt

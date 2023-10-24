@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Auto Expense</title>
+</head>
+
+<body>
+    <div style="margin: auto; width: 50%;">
+        <label for="image">Image URL</label><br>
+        <input form="expense_form" type="url" name="image" placeholder="URL to image"><br>
+        <label for="question">Question</label><br>
+        <input form="expense_form" type="text" name="question" placeholder="Question to ask the model"><br>
+
+        <form hx-post="{{ FUNCTION_URL }}" id="expense_form" enctype="multipart/form-data" hx-swap="inner-html"
+            hx-target="#result" hx-ext='json-enc' hx-indicator="#in-flight-indicator">
+            <button type="submit">Submit</button>
+        </form>
+        <div>
+            <h3>Result</h3>
+            <p id="in-flight-indicator" class="htmx-indicator">Requesting data</p>
+            <div id="result">
+            </div>
+
+        </div>
+    </div>
+
+</body>
+<script src="https://unpkg.com/htmx.org@1.9.6"
+    integrity="sha384-FhXw7b6AlE/jyjlZH5iHa/tTe9EpJ1Y55RjcgPbjeWMskSxZt1v9qkxLJWNJaGni"
+    crossorigin="anonymous"></script>
+<script src="https://unpkg.com/htmx.org/dist/ext/json-enc.js"></script>
+
+</html>
